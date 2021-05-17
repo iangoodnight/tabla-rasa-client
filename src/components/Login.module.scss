@@ -1,0 +1,65 @@
+form {
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-columns: repeat(12, 1fr);
+  padding: 1rem 1rem 4rem;
+  text-transform: uppercase;
+  border: solid rgba(0,0,0,.5) 1px;
+  border-radius: 1rem;
+  background-color: rgba(0,0,0,.1);
+
+  div {
+    width: 100%;
+    grid-template-columns: repeat(10, 1fr);
+    grid-column-start: 2;
+    grid-column-end: span 10;
+    display: grid;
+
+    label {
+      text-align: right;
+      padding: .2rem .5rem .2rem 0;
+      font-weight: 500;
+      grid-column-start: 1;
+      grid-column-end: span 2;
+    }
+
+    input {
+      border: solid rgba(0,0,0,.5) 1px;
+      border-radius: .7rem;
+      grid-column-start: 4;
+      grid-column-end: span 7;
+      outline: none;
+      padding: .4rem;
+
+      &:focus {
+        border: solid rgba(0,0,.7,.5) 1px;
+      }
+    }
+
+    &.head {
+
+      h1 {
+        grid-column-start: 4;
+        grid-column-end: span 7;
+        width: 100%;
+      }
+    }
+
+    button {
+      border: solid rgba(0,0,0,0.5) 1px;
+      border-radius: .7rem;
+      height: 1.7rem;
+      grid-column-start: 4;
+      grid-column-end: span 7;
+      width: 100%;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 1rem;
+      background-color: rgba(6,93,183,0.6);
+    }
+  }
+}

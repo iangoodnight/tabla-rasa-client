@@ -1,0 +1,23 @@
+@import "../styles/_colors.scss";
+
+main {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 1em;
+
+  section {
+    grid-column-start: 2;
+    grid-column-end: 9;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fill {
+    width: 100%;
+    grid-column-start: 10;
+    grid-column-end: span 3;
+    background-color: $success-blue;
+  }
+}
