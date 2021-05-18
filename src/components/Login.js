@@ -4,11 +4,11 @@
 
 import React, { useState } from 'react';
 import loginStyles from './Login.module.scss';
+import auth from '../services/auth.service';
 
-const Login = () => {
+const Login = ({ setToken }) => {
   const [form, setForm] = useState({
     username: '',
-    email: '',
     password: '',
   });
 
@@ -23,9 +23,11 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+    const user = await auth.login(form)
+    console.log(user);
+    setToken(user);
   }
 
   return(
@@ -41,16 +43,6 @@ const Login = () => {
           onChange={handleChange}
           type="text"
           value={form.username}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          onChange={handleChange}
-          type="email"
-          value={form.email}
         />
       </div>
       <div>
