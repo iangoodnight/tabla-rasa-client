@@ -4,8 +4,8 @@ const auth = {
   login: async (data) => {
     try {
       const response = await axios.post('http://localhost:3001/api/auth', data);
-      const { status, data: { user } } = response;
-      if (status === 200) return user;
+      const { status, data: { success, token } } = response;
+      if (status === 200) return { success, token };
       return { message: 'user not found' };
     } catch (e) {
       console.log(e);

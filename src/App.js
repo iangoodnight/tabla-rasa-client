@@ -1,32 +1,18 @@
-import React, { useState } from 'react';
+import React, { useCallbck, useContext, useEffect, useState } from 'react';
 import './App.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { UserContext } from './contexts/UserContext';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import Protected from './pages/Protected';
 
 const App = () => {
-  const [token, setToken] = useState();
+  const [userContext, setUserContext] = useContext(UserContext);
 
-  if (!token) {
-    return <Landing setToken={setToken} />;
-  }
-
+  console.log(userContext);
   return (
     <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route path="/secret">
-            <Protected />
-          </Route>
-          <Route path="/login">
-            <Landing />
-          </Route>
-          <Route path="/">
-            <Dashboard />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      {!userContext.token ? <Landing /> : <Dashboard />}
     </div>
   );
 }

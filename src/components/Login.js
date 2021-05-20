@@ -2,11 +2,15 @@
  * Login component
  */
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../contexts/UserContext';
 import loginStyles from './Login.module.scss';
 import auth from '../services/auth.service';
 
-const Login = ({ setToken }) => {
+const Login = () => {
+  const [isSubmitting, setIsSubmitting] = useState('');
+  const [error, setError] = useState('');
+  const [userContext, setUserContext] = useContext(UserContext);
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -25,9 +29,15 @@ const Login = ({ setToken }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await auth.login(form)
-    console.log(user);
-    setToken(user);
+    setIsSubmitting(true);
+    setError('');
+    const { success, token } = await auth.login(form)
+    if (success) setUserContext(context => { return { ...context, token }});
+    if (!success) setError('Something went wrong');
+    setIsSubmitting(false);
+    console.log(error)
+    console.log(token);
+    console.log(userContext);
   }
 
   return(
